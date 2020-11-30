@@ -19,9 +19,9 @@
 
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
-      <v-toolbar-title style="padding:0">
-        <v-img :src="white" width="50px"></v-img>
-      </v-toolbar-title>
+<!--      <v-toolbar-title style="padding:0">-->
+<!--        <v-img :src="white" width="50px"></v-img>-->
+<!--      </v-toolbar-title>-->
 
       <v-spacer></v-spacer>
 
@@ -33,8 +33,8 @@
         </template>
         <v-list>
           <v-list-item
-              v-for="(item, index) in icons"
-              :key="index"
+              v-for="item in icons"
+              :key="item.id"
               class="icon-hover"
               @click="redirect(item.url)"
           >
@@ -47,13 +47,12 @@
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list nav dense>
         <v-list-item-group
-            v-model="group"
             color="#f76a8c"
         >
           <v-list-item>
-            <v-list-content>
+            <v-list-item-content>
               <v-list-item-title class="title-menu" style="font-size: 20px;">Menu</v-list-item-title>
-            </v-list-content>
+            </v-list-item-content>
           </v-list-item>
           <v-list-item>
             <v-list-item-icon>
@@ -84,19 +83,23 @@ export default class Header extends Vue {
   icons = [
     {
       icon: "mdi-facebook",
-      url: ""
+      url: "",
+      id: 1
     },
     {
       icon: "mdi-twitter",
-      url: ""
+      url: "",
+      id: 2
     },
     {
       icon: "mdi-telegram",
-      url: ""
+      url: "",
+      id: 3
     },
     {
       icon: "mdi-instagram",
-      url: ""
+      url: "",
+      id: 4
     }
   ]
 }

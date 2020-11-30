@@ -19,12 +19,11 @@
       </v-card-text>
       <v-card-text>
         <v-list dense>
-          <v-list-item-group v-model="item" color="#f76a8c">
+          <v-list-item-group color="#f76a8c">
             <v-list-item
                 v-for="(item, i) in items"
                 :key="i"
-                @click="redirect(item.url)"
-            >
+                @click="redirect(item.url)">
               <v-list-item-icon>
                 <v-icon v-text="item.icon"></v-icon>
               </v-list-item-icon>
@@ -46,7 +45,7 @@
 import {Component, Vue} from "vue-property-decorator";
 
 @Component
-export default class Home extends Vue {
+export default class Contact extends Vue {
   items = [
     { text: "Celmybell@gmail.com", icon: "mdi-email" },
     { text: "@Celmy", url: "https://t.me/Celmy", icon: "mdi-telegram" },

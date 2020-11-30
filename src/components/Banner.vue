@@ -14,7 +14,7 @@
             color="#f76a8c"
             text
             v-for="icon in icons"
-            :key="icon"
+            :key="icon.id"
             @click="redirect(icon.url)"
         >
           <v-icon>{{ icon.icon }}</v-icon>
@@ -33,19 +33,23 @@ export default class Banner extends Vue {
   icons = [
     {
       icon: "mdi-facebook",
-      url: ""
+      url: "",
+      id: 1
     },
     {
       icon: "mdi-twitter",
-      url: ""
+      url: "",
+      id: 2
     },
     {
       icon: "mdi-telegram",
-      url: ""
+      url: "",
+      id: 3
     },
     {
       icon: "mdi-instagram",
-      url: ""
+      url: "",
+      id: 4
     }
   ]
   redirect(url: string): void {

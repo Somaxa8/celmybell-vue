@@ -16,7 +16,7 @@
                     <v-card>
                       <v-img
                           width="400px"
-                          :src="silentboxItem.src"
+                          :src="silentboxItem.url"
                           class="white--text align-end"
                           gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                           height="200px"
@@ -36,31 +36,18 @@
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
+import DocumentService from "@/services/DocumentService";
+// eslint-disable-next-line no-unused-vars
+import Document from "@/models/Document";
 
 @Component
 export default class Briefcase extends Vue {
-  gallery = [
-    {
-      description: "Ergo Proxy vincent drawing",
-      alt: "Fanart",
-      src: "http://51.178.19.230:8082/storage/image/6D1606096249889.jpg"
-    },
-    {
-      description: "Ashita no Joe drawing",
-      alt: "Fanart",
-      src: "http://51.178.19.230:8082/storage/image/2D1606095702382.jpeg"
-    },
-    {
-      description: "Evangelion Misato drawing",
-      alt: "Fanart",
-      src: "http://51.178.19.230:8082/storage/image/3D1606095955857.jpeg"
-    },
-    {
-      description: "Legend Of Galactic Heroes Rainhard drawing",
-      alt: "Fanart",
-      src: "http://51.178.19.230:8082/storage/image/5D1606096207112.jpeg"
-    }
-  ]
+  gallery: Document[] = []
+
+  created() {
+    DocumentService.getDocuments(this, this.gallery)
+    console.log(this.gallery)
+  }
 }
 </script>
 
@@ -70,7 +57,7 @@ export default class Briefcase extends Vue {
     font-size: 40px;
   }
 
-  #silentbox-gallery {
+  #silentbox-gallery { 
     width: 100%;
   }
 
