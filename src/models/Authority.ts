@@ -1,9 +1,6 @@
 import {JsonConverter, JsonCustomConvert, JsonObject, JsonProperty} from "json2typescript";
 
-export enum AuthorityName {
-    SUPERADMIN = "SUPERADMIN",
-    ADMIN = "ADMIN",
-}
+export enum AuthorityName { ADMIN = "ADMIN" }
 
 @JsonConverter
 class NameConverter implements JsonCustomConvert<AuthorityName> {
