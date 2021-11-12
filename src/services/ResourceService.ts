@@ -33,7 +33,7 @@ export default class ResourceService {
         // @ts-ignore
         component.loading = true
         try {
-            const response = await component.axios.get("/public/books/" + id)
+            const response = await component.axios.get("/public/resources/" + id)
             // @ts-ignore
             component.resource = JsonTool.jsonConvert.deserializeObject(response.data, Resource)
             // @ts-ignore
@@ -57,7 +57,7 @@ export default class ResourceService {
         formData.set("title", title)
 
         try {
-            await component.axios.post("/api/resource", formData, {
+            await component.axios.post("/api/resources", formData, {
                 headers: {Authorization: getModule(SessionModule).session.token}
             })
             getModule(SnackbarModule).makeToast("Se ha creado un nuevo recurso correctamente!")
@@ -85,7 +85,7 @@ export default class ResourceService {
         formData.set("title", title)
 
         try {
-            await component.axios.post("/api/resource/" + id, formData, {
+            await component.axios.post("/api/resources/" + id, formData, {
                 headers: {Authorization: getModule(SessionModule).session.token}
             })
             getModule(SnackbarModule).makeToast("Se ha editado un recurso correctamente!")
@@ -107,7 +107,7 @@ export default class ResourceService {
         component.loading = true
 
         try {
-            await component.axios.delete("/api/resource/" + id, {
+            await component.axios.delete("/api/resources/" + id, {
                 headers: {Authorization: getModule(SessionModule).session.token}
             })
             // @ts-ignore
