@@ -1,36 +1,12 @@
 <template>
-    <v-app-bar app clipped-left color="secondary">
-        <v-app-bar-nav-icon class="mr-1" color="white"></v-app-bar-nav-icon>
-
-        <v-divider vertical inset></v-divider>
-        <v-img src="@/assets/logo.png" aspect-ratio="1" max-width="40" max-height="40" class="mx-4 logo-tint"/>
-
-        <v-toolbar-title class="white--text">{{projectName}}</v-toolbar-title>
-
-        <v-spacer></v-spacer>
-
-        <v-menu bottom left>
-            <template v-slot:activator="{ on }">
-                <v-btn dark icon v-on="on">
-                    <v-icon>mdi-dots-vertical</v-icon>
-                </v-btn>
-            </template>
-
-            <v-list min-width="200">
-
-                <v-list-item>
-                    <v-switch v-model="dark" label="Dark" height="10"></v-switch>
-                </v-list-item>
-
-                <v-divider class="my-2"/>
-
-                <v-list-item @click="logout()">
-                    <v-list-item-title>Salir</v-list-item-title>
-                </v-list-item>
-
-            </v-list>
-        </v-menu>
-
+    <v-app-bar app clipped-left color="secondary" height="63">
+        <v-img src="@/assets/logo.svg" max-width="40" max-height="40"/>
+        <v-bottom-navigation v-model="value" background-color="secondary" height="63" dark style="box-shadow: none">
+            <v-btn v-for="item in buttons" :key="item.title" @click="$router.push(item.url)" :value="item.value" style="font-size: medium" >
+                {{ item.title }}
+            </v-btn>
+        </v-bottom-navigation>
+        <div style="width: 40px" />
     </v-app-bar>
 </template>
 
@@ -46,16 +22,23 @@ export default class NavbarComponent extends Vue {
     sessionModule: SessionModule = getModule(SessionModule)
     snackbarModule: SnackbarModule = getModule(SnackbarModule)
     projectName: string = ConstantTool.PROJECT_NAME
+    value: String = "home"
+    buttons: Array<any> =  [
+        { title: "Home", value: "home", url: "#" },
+        { title: "Ilustrations", value: "illustrations", url: "#" },
+        { title: "3D Models", value: "3dModels", url: "#" },
+        { title: "Contact", value: "contact", url: "#" }
+    ]
+
+
     get dark() {
         return this.$vuetify.theme.dark
     }
+
     set dark(v: boolean) {
         this.sessionModule.session.dark = v
         this.sessionModule.saveSession()
         this.$vuetify.theme.dark = v
-    }
-    logout() {
-        LoginService.logout(this)
     }
 }
 </script>
